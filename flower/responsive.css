@@ -1,0 +1,146 @@
+/* =================================================================
+   RESPONSIVE LAYOUT (ไฟล์แยกสำหรับจัดการหน้าจอทุกขนาด)
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   1. ช่วงจอ Laptop ขนาดกลาง (จอคอมเล็กลงมาหน่อย)
+   (กว้างสูงสุด 1200px) 
+   ----------------------------------------------------------------- */
+@media screen and (max-width: 1200px) {
+    .navbar-text-container a { font-size: 22px; }
+    .navbar-menu a { padding: 8px 10px; font-size: 0.95rem; }
+    .navbar-menu li { margin-left: 10px; }
+}
+
+/* --- 2. หน้าจอ Tablet และ มือถือ (กว้างไม่เกิน 1024px) --- */
+@media screen and (max-width: 1024px) {
+    
+    /* จัด Navbar ให้เรียงจากซ้ายไปขวา */
+    .navbar {
+        padding: 10px 15px;
+        justify-content: flex-start; 
+    }
+
+    /* ปรับขนาดโลโก้ */
+    .navbar-logo .logo-image { 
+        width: 45px; 
+        margin-right: 10px; 
+    }
+
+    /* --- ส่วนสำคัญ: บังคับโชว์ชื่อเว็บและวิทยาลัย --- */
+    .navbar-text-container {
+        display: flex !important; 
+        flex-direction: column;
+        justify-content: center;
+        max-width: 65%; 
+    }
+
+    .navbar-text-container a {
+        font-size: 18px; 
+        line-height: 1.2;
+        white-space: nowrap; 
+    }
+
+    .navbar-text-container small {
+        display: block !important; 
+        font-size: 11px;
+        color: #666;
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        opacity: 1;
+    }
+    
+    .navbar.scrolled .navbar-text-container small {
+        display: block !important;
+    }
+
+    /* --- ปุ่มเมนู Hamburger --- */
+    .menu-toggle {
+        display: block; 
+        margin-left: auto; /* สั่งให้ดันไปขวาสุด */
+        font-size: 1.8rem;
+        padding-left: 10px;
+    }
+
+    /* ✅✅✅ [เพิ่มส่วนนี้] แก้บั๊กเมนูไม่ชิดขวา ✅✅✅ */
+    /* สั่งให้ Nav ไม่ต้องดันไปขวาแล้ว (หลีกทางให้ปุ่มเมนู) */
+    .navbar nav {
+        margin-left: 0; 
+    }
+
+    /* --- ซ่อนเมนูแนวนอน และทำเป็นเมนูเลื่อนลง --- */
+    .navbar-menu {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .navbar-menu.active { display: flex; }
+    .navbar-menu li { margin: 10px 0; width: 100%; margin-left: 0; }
+
+    /* Dropdown ในมือถือ */
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        padding-left: 20px;
+        background-color: #f9f9f9;
+        display: none;
+    }
+    .dropdown-item:hover .dropdown-menu { display: block; }
+    
+    /* ปรับ Layout หน้าเว็บเป็นคอลัมน์เดียว */
+    .container {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+    .sidebar { order: 2; }
+}
+
+/* -----------------------------------------------------------------
+   3. ช่วงจอ Tablet แนวตั้ง (iPad)
+   (กว้างสูงสุด 768px) -> ไม่ต้องแก้เยอะ มันจะดึงค่าจาก 1024px มาใช้เอง
+   ----------------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+    
+    /* ปรับขนาดตัวอักษรชื่อเว็บลงอีกนิด */
+    .navbar-text-container a { font-size: 16px; }
+    .navbar-text-container small { font-size: 10px; }
+    
+    /* ปรับปุ่มค้นหาใน Sidebar ให้เต็มจอ */
+    .search-box input { width: 100%; }
+}
+
+/* -----------------------------------------------------------------
+   4. ช่วงจอ มือถือทั่วไป (iPhone, Samsung)
+   (กว้างสูงสุด 480px) -> แก้เฉพาะจุดที่มันล้นจริงๆ
+   ----------------------------------------------------------------- */
+@media screen and (max-width: 480px) {
+    
+    /* โลโก้เล็กลงอีกนิดเพื่อประหยัดที่ */
+    .navbar-logo .logo-image { width: 35px; margin-right: 8px; }
+    
+    /* ชื่อเว็บปรับลดขนาดลง กันตกบรรทัด */
+    .navbar-text-container a { font-size: 14px; } 
+    .navbar-text-container small { font-size: 9px; max-width: 180px; }
+    
+    /* ปรับ Header รูปภาพปก */
+    .hero { height: 250px; } /* ลดความสูงภาพปก */
+    .hero h1 { font-size: 2rem; } /* ลดขนาดหัวข้อ */
+}
+
+/* -----------------------------------------------------------------
+   5. ช่วงจอ มือถือเล็กมาก (รุ่นเก่ามากๆ)
+   (กว้างสูงสุด 320px) -> เผื่อไว้กันเหนียว
+   ----------------------------------------------------------------- */
+@media screen and (max-width: 320px) {
+    .navbar-text-container { display: none !important; } /* จอเล็กเกินจนต้องซ่อนชื่อ */
+    .navbar-logo .logo-image { margin-right: 0; }
+}

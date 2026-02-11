@@ -1,0 +1,567 @@
+/* =======================================
+ * 0. การกำหนดรูปแบบเริ่มต้นสำหรับ Body และ Font
+ * ======================================= */
+body {
+    font-family: 'Kanit', sans-serif;
+    height: auto;
+    /* การกำหนดพื้นหลังหลัก */
+    background:
+        linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255, 0.256)),
+        url('image/pexels-mdsnmdsnmdsn-1405773.jpg') center/cover no-repeat;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ------------------ Navbar ------------------ */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 5px; 
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out; 
+}
+
+/* สไตล์เมื่อ Navbar ถูกเลื่อนลง (Shrunk State) */
+.navbar.scrolled {
+    padding: 10px 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+/* 2. 🧭 แก้ไข: เปลี่ยนการจัดกลางเป็นผลักไปทางขวาของพื้นที่ว่าง */
+.navbar nav {
+    margin-left: auto; 
+    margin-right: 50px; 
+}
+
+/* แก้ไข .navbar-logo ให้รองรับภาพและข้อความ */
+.navbar-logo {
+    display: flex; 
+    align-items: center; 
+    font-size: 28px;
+    font-weight: 700;
+    /* 🛠️ สีเขียวสำหรับโลโก้หลัก */
+    color: #1a7e1a; 
+    margin-right: 15px; 
+}
+/* *** เพิ่ม: สไตล์สำหรับลิงก์โลโก้ (ถ้าใช้ <a href> ล้อมรอบ) *** */
+.navbar-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit; /* ใช้สีที่กำหนดใน .navbar-logo (#1a7e1a) */
+}
+
+
+/* สไตล์สำหรับรูปภาพโลโก้ */
+.navbar-logo .logo-image {
+    width: 60px; 
+    height: auto;
+    margin-right: 10px; 
+    transition: width 0.3s ease-in-out; 
+}
+/* สไตล์โลโก้เมื่อถูกเลื่อนลง */
+.navbar.scrolled .navbar-logo .logo-image {
+    width: 60px; 
+}
+
+
+/* จัดกลุ่มข้อความ */
+.navbar-text-container {
+    display: flex;
+    flex-direction: column; 
+    line-height: 1.1; 
+    /* 🛠️ สีเขียวสำหรับข้อความหลัก */
+    color: #1a7e1a; 
+    font-size: 38px;
+    transition: font-size 0.3s ease-in-out;
+}
+/* ****** NEW: สไตล์ข้อความหลักเมื่อถูกเลื่อนลง ****** */
+.navbar.scrolled .navbar-text-container {
+    font-size: 25px; 
+}
+
+
+/* สไตล์สำหรับข้อความเล็ก */
+.navbar-logo small {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    margin-top: 2px;
+    transition: font-size 0.3s ease-in-out;
+}
+/* ****** NEW: สไตล์ข้อความเล็กเมื่อถูกเลื่อนลง ****** */
+.navbar.scrolled .navbar-logo small {
+    font-size: 10px; 
+}
+
+
+/* สไตล์สำหรับเมนูนำทาง (ทำให้เป็นแนวนอน) */
+.navbar-menu {
+    list-style: none; 
+    display: flex; 
+    margin: 0;
+    padding: 0;
+}
+.navbar-menu li {
+    margin-left: 30px;
+    position: relative;
+}
+
+/* 🛠️ สไตล์ลิงก์เมนูนำทาง (สีเทาเข้ม) */
+.navbar-menu a {
+    text-decoration: none; /* ✅ ลบขีดเส้นใต้ */
+    color: #000000; /* ✅ สีเริ่มต้น: เทาเข้มสำหรับเมนู */
+    display: block; 
+    font-weight: 600;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+/* 🛠️ สไตล์เมื่อวางเมาส์ (Hover) */
+.navbar-menu a:hover {
+    color: #1a7e1a; /* ✅ คงสีเทาเข้มเมื่อวางเมาส์ */
+    text-decoration: none; 
+}
+/* ... (รวมถึง Dropdown CSS ที่เหลือ) ... */
+
+
+
+/* ------------------ Dropdown Menu (CSS Hover) ------------------ */
+
+/* 1. จัดตำแหน่งให้เมนูหลัก (li) เป็นจุดอ้างอิง */
+.navbar-menu .dropdown-item {
+    position: relative; 
+}
+
+/* ****** NEW: บังคับลิงก์หลัก (a) ให้อยู่ด้านบน Dropdown Menu ****** */
+.dropdown-item > a {
+    position: relative; 
+    z-index: 1011; /* สูงกว่า Dropdown Menu เล็กน้อย */
+}
+
+/* 2. ซ่อนเมนูย่อยเริ่มต้นและจัดวางตำแหน่ง */
+.dropdown-menu {
+    display: none; /* คำสั่งหลักในการซ่อน */
+    position: absolute;
+    top: 100%; /* แสดงใต้เมนูหลัก */
+    left: 0;
+    
+    min-width: 200px;
+    background-color: #ffffff; 
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1010; /* ตรวจสอบว่าต่ำกว่าลิงก์หลัก (1011) */
+}
+
+/* 3. สไตล์รายการเมนูย่อย */
+.dropdown-menu li {
+    margin: 0; 
+}
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #000000;
+    font-weight: 400; 
+    white-space: nowrap; 
+}
+
+/* 4. สไตล์เมื่อวางเมาส์บนเมนูย่อย */
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0; 
+    color: #1a7e1a; 
+}
+
+/* 5. คำสั่งสำคัญ: แสดงเมนูย่อยเมื่อวางเมาส์เหนือเมนูหลัก */
+.dropdown-item:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* ------------------ 2. Slideshow ------------------ */
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    height: 500px;
+    overflow: hidden;
+    /* ****** เพิ่ม Z-index ต่ำ เพื่อไม่ให้ทับ Navbar ****** */
+    z-index: 10; 
+}
+
+.mySlides {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.mySlides.active {
+    opacity: 1 !important;
+}
+
+.hero-text {
+    position: relative; 
+    z-index: 10; 
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 20px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    
+    /* --- โค้ดหลักที่ปรับเพื่อทำให้เป็นวงกลมและจัดกึ่งกลางลูกศร --- */
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 0; 
+    transform: translateY(-50%); 
+    margin-top: 0; 
+    /* ------------------------------------------------------------------ */
+
+    color: rgba(255, 255, 255, 0.525);
+    font-weight: bold;
+    font-size: 20px; 
+    
+    /* *** ปรับแก้: เพิ่ม opacity และรวม transition *** */
+    transition: opacity 0.6s ease, background-color 0.6s ease; 
+    opacity: 0; /* ซ่อนในสถานะปกติ */
+    background-color: transparent; /* พื้นหลังโปร่งใส */
+    
+    user-select: none;
+    z-index: 11; 
+    text-decoration: none;
+}
+
+
+.next {
+    right: 0;
+}
+
+.prev {
+    left: 0;
+}
+
+.prev:hover, .next:hover {
+    opacity: 1; /* แสดงปุ่ม */
+    background-color: rgba(169, 169, 169, 0.534); /* พื้นหลังเข้มขึ้นเมื่อ Hover */
+}
+
+
+.dot-container {
+    position: absolute;
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 11; 
+}
+
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%; 
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: #00000072;
+}
+
+/* =======================================
+ * 3. Search Bar Area and Content Layout
+ * ======================================= */
+.container {
+    max-width: 1200px;
+    /* ✨ แก้ไข: กำหนด margin-left (ตัวเลขสุดท้าย) เป็น 50px เพื่อเลื่อน Layout เข้าขวา */
+    margin: 0 0 0 50px; 
+    padding: 20px; 
+}
+
+.title {
+    text-align: center;
+    font-size: 50px;
+    /* [ปรับแก้]: ดึงหัวข้อขึ้นไปด้านบน */
+    margin-top: -15px; 
+    margin-bottom: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    /* [ปรับแก้]: ดึงกล่องค้นหาลงมาอยู่ใต้หัวข้อ */
+    margin-top: 0px; 
+    margin-bottom: 10px;
+    gap: 0;
+}
+
+.search-box input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #1b232e;
+    background-color: #ffffff00;
+    border-radius: 5px 0 0 5px;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.search-box button {
+    background: url('image/BG-Button/dynamic-mixed-color-gradient-vector-mesh-with-radial-designs-exuding-energy-vibrancy_1211457-3457.avif') center/cover no-repeat;
+    border: none;
+    padding: 0 15px;
+    color: #ffffff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    margin: 0;
+    border: 2px solid #1b232e;
+    margin-left: -2px;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+/* 🚀 Hover Effect สำหรับกล่องค้นหาและปุ่ม */
+.search-box:hover input,
+.search-box:hover button {
+    transform: scale(1.05);
+}
+
+.search-box:hover button {
+    font-size: 18px;
+}
+
+.hint {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    /* [ปรับแก้]: ดึงข้อความคำแนะนำขึ้นไป (หรือลงมา) */
+    margin-top: 0px;
+}
+
+.hint span {
+    color: #8cdd6e;
+}
+
+.content {
+    display: flex;
+    /* [ปรับแก้]: ดึงส่วนเนื้อหาหลัก (Sidebar และ Results) ขึ้นมา */
+    margin-top: -100px;
+    /* ทำให้ Sidebar ชิดซ้าย */
+    justify-content: flex-start;
+}
+
+/* =======================================
+ * 4. Sidebar and Filter Boxes
+ * ======================================= */
+
+.sidebar {
+    /* [ปรับแก้]: กำหนดความกว้างของ Sidebar */
+    width: 30%;
+    border-right: 1px solid #1b232e;
+    padding-right: 20px;
+    margin: 0; 
+    margin-top: 15px;
+}
+
+/* ส่วนแสดงผลหลัก (ต้องขยายตัวเต็มพื้นที่ที่เหลือ) */
+.results {
+    /* ✨ สำคัญ: ให้ขยายตัวเต็มพื้นที่ที่เหลือ (70% ของ Sidebar) */
+    flex: 1; 
+    padding-left: 30px;
+    width: 100%; /* สำคัญสำหรับการจัดวางใน Flexbox */
+}
+
+.main-sidebar {
+    background-color: #90ca4b; 
+    padding: 15px;
+    min-height: 100vh;
+}
+
+/* ====== กล่องที่ 1: ค้นหาตามชื่อวงศ์ (Filter Family) ====== */
+.filter-family {
+    text-align: center;
+    margin: 10px 0 50px 0; 
+    padding: 10px 15px 20px 10px;
+    background: url('image/BG-Button/dynamic-mixed-color-gradient-vector-mesh-with-radial-designs-exuding-energy-vibrancy_1211457-3457.avif') center/cover no-repeat;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    /* แก้ไข margin: */
+    margin: 10px auto 50px 0; /* ชิดซ้ายใน Sidebar */
+}
+
+.filter-family h3 {
+    font-size: 35px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #ffffff; 
+    text-align: center;
+}
+
+.filter-family select {
+    background: url('image/BG-Button/360_F_974759402_p9yt1sA3cbtnoEHkoKa8ZN0lSWpEeZcx.jpg') center/cover no-repeat;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #182905;
+    text-align: left;
+}
+
+.filter-family select option {
+    background-color: #cef87c; 
+    color: #000000;
+    padding: 5px 10px;
+}
+
+/* ====== กล่องที่ 2: ค้นหาประเภทของพันธุ์ไม้ (Filter Type) ====== */
+.filter-type {
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+    /* [ปรับแก้]: ดึงกล่องขึ้นไปชิดกล่องด้านบน */
+    margin: -40px 0 -50px 0; 
+    background: url('image/BG-Button/360_F_974759402_p9yt1sA3cbtnoEHkoKa8ZN0lSWpEeZcx.jpg') center/cover no-repeat;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 300px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    height: auto;
+    
+    /* แก้ไข margin: */
+    margin: 10px auto 50px 28px; /* ชิดซ้ายใน Sidebar */
+    padding: 10px 15px 20px 15px;
+}
+
+.filter-type h3 {
+    font-size: 35px;
+    margin-top: -10px;
+    margin-bottom: 10px; 
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.filter-type ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-type li {
+    margin: 10px 0; 
+}
+
+.filter-type a {
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    text-decoration: none;
+    color: #333;
+    background-color: #ffffff;
+    padding: 12px 15px;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    font-size: 22px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.filter-type a:hover {
+    background-color: #fbff837d;
+    transform: translateY(-3px);
+}
+
+/* ====== กล่องที่ 3: จำนวนการเข้าชมเว็บไซต์ (Stats Box) ====== */
+.stats-box {
+    text-align: center;
+    margin: 30px 0 10px 0; 
+    padding: 20px 15px;
+    background: url('image/BG-Button/dynamic-mixed-color-gradient-vector-mesh-with-radial-designs-exuding-energy-vibrancy_1211457-3457.avif') center/cover no-repeat;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    /* แก้ไข margin: */
+    margin: 10px auto 50px 18px; /* ชิดซ้ายใน Sidebar */
+    padding: 10px 15px 20px 15px;
+}
+
+.stats-box .count-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stats-box .count-label {
+    font-size: 16px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.stats-box .update-info {
+    font-size: 12px;
+    color: #ffffff;
+    font-style: italic;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* Footer */
+footer {
+    background-color: #222222; 
+    color: #cccccc; 
+    padding: 15px 0; 
+    text-align: center; 
+}
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .plant-types-grid { grid-template-columns: 1fr; }
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar nav { margin-left: 0; margin-top: 10px; }
+}

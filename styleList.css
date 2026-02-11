@@ -1,0 +1,388 @@
+/* =========================================
+   1. Theme Variables (กำหนดตัวแปรสี) - ของเดิม
+   ========================================= */
+:root {
+    /* ☀️ สีโหมดสว่าง (Default) */
+    --bg-color: #f5f5f5;
+    --bg-navbar: #ffffff;
+    --bg-card: #ffffff;
+    --text-color: #333333;
+    --text-navbar-primary: #1a7e1a;
+    --text-navbar-secondary: #555555;
+    --primary-green: #1a7e1a;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --search-bg: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+    /* 🌙 สีโหมดมืด */
+    --bg-color: #121212;
+    --bg-navbar: #1e1e1e;
+    --bg-card: #252525;
+    --text-color: #e0e0e0;
+    --text-navbar-primary: #66bb6a;
+    --text-navbar-secondary: #bbbbbb;
+    --primary-green: #66bb6a;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --search-bg: #2c2c2c;
+    --border-color: #444444;
+}
+
+/* =========================================
+   2. Base Styles - ของเดิม
+   ========================================= */
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin-top: 85px; /* ดันเนื้อหาหลบ Navbar */
+    padding: 0;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* =========================================
+   3. Navbar & Button Design - ของเดิม
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 20px; 
+    background-color: var(--bg-navbar);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.navbar.scrolled {
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar nav {
+    margin-left: auto; 
+}
+
+/* --- Logo Styling --- */
+.navbar-logo {
+    display: flex; 
+    align-items: center; 
+    text-decoration: none;
+}
+.navbar-logo .logo-image {
+    width: 60px; 
+    height: auto;
+    margin-right: 10px; 
+    transition: width 0.3s ease-in-out; 
+}
+.navbar.scrolled .navbar-logo .logo-image {
+    width: 50px; 
+}
+.navbar-text-container {
+    display: flex;
+    flex-direction: column; 
+    line-height: 1.1; 
+    transition: font-size 0.3s ease-in-out;
+}
+.navbar-text-container a {
+    color: var(--text-navbar-primary);
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.navbar-logo small {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-navbar-secondary);
+}
+
+.navbar nav ul {
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    align-items: center;
+}
+
+.navbar nav li {
+    margin-left: 20px;
+}
+
+/* --- Theme Button --- */
+.theme-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 8px 16px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-btn:hover {
+    background-color: var(--primary-green);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(26, 126, 26, 0.2);
+}
+
+[data-theme="dark"] .theme-btn {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+[data-theme="dark"] .theme-btn:hover {
+    background-color: var(--primary-green);
+    color: #121212;
+}
+
+/* =========================================
+   4. NEW DESIGN: List View & Search Banner
+      (ส่วนที่เพิ่มใหม่ เพื่อให้เหมือนภาพตัวอย่าง)
+   ========================================= */
+
+.main-content {
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    /* margin-top ถูกจัดการโดย body แล้ว */
+    padding-bottom: 50px;
+}
+
+/* --- Search Banner (เลียนแบบแถบสีในรูป) --- */
+.search-banner {
+    /* ใช้สีแดงส้มตามรูปต้นฉบับ ถ้าอยากได้สีเขียวให้เปลี่ยนเป็น var(--primary-green) */
+    background-color: #d9534f; 
+    padding: 20px 0;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ปรับสี Banner ในโหมดมืด */
+[data-theme="dark"] .search-banner {
+    background-color: #c0392b; /* แดงเข้มขึ้น */
+}
+
+.search-box-inner {
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    display: flex;
+    position: relative;
+}
+
+.simple-search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    outline: none;
+    background-color: #ffffff; /* ช่องค้นหาสีขาวเสมอใน banner นี้ */
+}
+
+.simple-search-btn {
+    position: absolute;
+    right: 30px; /* ปรับตำแหน่งปุ่มแว่นขยาย */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #d9534f; /* สีเดียวกับพื้นหลังแถบ */
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* --- Container สำหรับ List --- */
+.container-list {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background-color: var(--bg-card); /* รองรับ Dark Mode */
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--shadow-color); 
+}
+
+/* หัวข้อ */
+.list-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+/* --- ตัวรายการต้นไม้ (Clean List Style) --- */
+.text-tree-list {
+    list-style-type: disc; /* จุด Bullet */
+    padding-left: 20px;
+    margin: 0;
+}
+
+.text-tree-list li {
+    margin-bottom: 12px;
+    color: var(--text-navbar-secondary); /* สีของจุด Bullet */
+}
+
+.text-tree-list li a {
+    text-decoration: none;
+    color: var(--text-color); /* สีข้อความปกติ */
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.text-tree-list li a strong {
+    font-weight: 500; /* ชื่อไทย */
+    margin-right: 8px;
+}
+
+.text-tree-list li a em {
+    font-style: italic;
+    color: var(--text-navbar-secondary); /* ชื่อวิทย์สีจางลง */
+    font-family: serif; /* ฟอนต์ Serif ให้ดูทางการเหมือนในรูป */
+}
+
+/* Hover Effect */
+.text-tree-list li a:hover {
+    color: var(--primary-green);
+    transform: translateX(5px); /* ขยับขวานิดนึง */
+}
+
+.text-tree-list li a:hover em {
+    color: var(--primary-green); /* เปลี่ยนชื่อวิทย์เป็นสีเขียวด้วย */
+}
+
+/* --- Pagination & Back Button --- */
+.pagination-simple {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex; /* ใช้ Flexbox เพื่อให้ไอเทมเรียงแนวนอน */
+    justify-content: space-between; /* ดันปุ่มย้อนกลับไปซ้ายสุด ช่องเปลี่ยนหน้าไปขวาสุด */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+}
+
+/* ปุ่มย้อนกลับ */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* ทำให้ขอบมนเข้ากับธีมปุ่มด้านบน */
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: var(--primary-green);
+    color: #ffffff;
+    border-color: var(--primary-green);
+    transform: translateX(-5px); /* เอฟเฟกต์ขยับไปทางซ้ายเล็กน้อยเวลากด */
+    box-shadow: 0 4px 8px rgba(26, 126, 26, 0.2);
+}
+
+/* ช่องเปลี่ยนหน้า */
+.page-numbers a, 
+.page-numbers span {
+    display: inline-block;
+    padding: 6px 14px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.page-numbers a:hover {
+    background-color: var(--primary-green);
+    color: white;
+    border-color: var(--primary-green);
+}
+
+.page-numbers span.current {
+    background-color: var(--primary-green);
+    color: white;
+    border-color: var(--primary-green);
+}
+
+/* Responsive สำหรับมือถือ */
+@media (max-width: 600px) {
+    .pagination-simple {
+        flex-direction: column-reverse; /* ดันปุ่มย้อนกลับไปอยู่ด้านล่างสุดเมื่อจอมือถือ */
+        gap: 20px;
+        justify-content: center;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar nav { margin-left: 0; margin-top: 10px; }
+    .container-list { padding: 20px; margin: 0 10px; }
+    .text-tree-list li a { font-size: 1rem; }
+    .pagination-simple { text-align: center; }
+}
+
+
+
+
+/* --- เพิ่มหัวข้อหมวดหมู่ (Category Title) --- */
+.category-title {
+    font-size: 1.4rem; /* เล็กกว่าหัวข้อหลัก (ที่ปกติ 1.8rem) */
+    font-weight: 600;
+    color: var(--primary-green); /* ใช้สีเขียวธีมหลัก */
+    margin-top: 30px;       /* เว้นระยะห่างจากด้านบน */
+    margin-bottom: 15px;    /* เว้นระยะห่างจากรายการ */
+    padding-left: 10px;     /* ขยับขวาเล็กน้อย */
+    border-left: 5px solid var(--text-navbar-secondary); /* ขีดเส้นข้างหน้าให้ดูเป็นหมวดหมู่ */
+}
+
+/* ปรับเส้นข้างหน้าใน Dark Mode ให้สว่างขึ้น */
+[data-theme="dark"] .category-title {
+    border-left-color: var(--text-navbar-primary);
+}
+
+
+
+
+/* Footer */
+footer {
+    background-color: #222222; 
+    color: #cccccc; 
+    padding: 15px 0; 
+    text-align: center; 
+}
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .plant-types-grid { grid-template-columns: 1fr; }
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar nav { margin-left: 0; margin-top: 10px; }
+}

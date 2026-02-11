@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฐานข้อมูลพันธุ์ไม้ - ระบบฐานข้อมูลเกษตรดิจิทัล</title>
+    <link rel="stylesheet" href="style-index.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="image/436206022_952929686628346_3125717830174581145_n (1).png" class="logo-image" alt="โลโก้พันธุ์ไม้">
+            <div class="navbar-text-container">
+                <a href="index.html">ข้อมูลพันธุ์ไม้</a>
+                <small>วิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์</small>
+            </div>
+        </div>
+        
+        <nav>
+            <ul class="navbar-menu">
+                <li>
+                    <button id="theme-toggle" class="theme-btn">
+                        <i class="fa-solid fa-moon"></i> โหมดมืด
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">ค้นหาพันธุ์ไม้ในฐานข้อมูล</h1>
+            <p class="hero-text">
+                การจัดหมวดหมู่ข้อมูลพันธุ์ไม้ได้นำมาเป็นสองลักษณะ คือ การจำแนกตามหลักอนุกรมวิธานโดยจัดกลุ่มตามวงศ์ (Family) ไปแต่ละวงศ์จะแบ่งย่อยเป็น สกุล (Genus) ไปแต่ละสกุลจะแบ่งย่อยเป็น ชนิด (Species) ตามลำดับ กับ การจำแนกตามลักษณะการใช้ประโยชน์ โดยจัดแบ่งเป็น 6 กลุ่ม ได้แก่ ไม้คลุมดิน, ไม้ล้มลุก, ไม้พุ่ม, ไม้ยืนต้น, ไม้เลื้อย และไม้ประดับอื่นๆ ตามลักษณะการใช้ประโยชน์ของพันธุ์ไม้ชนิดนั้นๆ การค้นหาพันธุ์ไม้ สามารถใช้การค้นหาจาก ชื่อสามัญ ชื่อชนิด ประเภทของพันธุ์ไม้ สีของดอก วิธีการขยายพันธุ์ การปลูกเลี้ยง และการใช้ประโยชน์
+            </p>
+            <div class="hero-buttons">
+                <a href="type-search.html" class="btn-primary">ผู้จัดทำ</a>
+                <a href="List.html" class="btn-secondary">รายชื่อพันธุ์ไม้ในฐานข้อมูล</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="search-section-wrapper">
+        <div class="search-container">
+            <h2 class="search-header">ค้นหาพันธุ์ไม้</h2>
+            
+            <form id="searchForm" class="custom-search-bar" onsubmit="event.preventDefault(); searchPlants();">
+                
+                <input type="text" id="mainSearchInput" class="search-input" placeholder="ค้นหาพันธุ์ไม้..." onkeyup="searchPlants()">
+                
+                <button type="submit" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+            <div id="mainSearchResults" class="search-results-box"></div>
+
+            <div class="search-tags">
+                พิมพ์คำค้นในช่องค้นหา หรือลองใช้คำค้นหาเหล่านี้: 
+                <a href="javascript:void(0)" onclick="autoSearch('ดอกสีขาว')">ดอกสีขาว</a>, 
+                <a href="javascript:void(0)" onclick="autoSearch('ไม้มงคล')">ไม้มงคล</a>, 
+                <a href="javascript:void(0)" onclick="autoSearch('ทนแล้ง')">ทนแล้ง</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <h2>ประเภทของพันธุ์ไม้</h2>
+        <p>
+            ข้อมูลของพันธุ์ไม้ในฐานข้อมูลแบ่งตามลักษณะการใช้ประโยชน์ 6 กลุ่ม คือ ไม้คลุมดิน, ไม้ล้มลุก, ไม้พุ่ม, ไม้ยืนต้น, ไม้เลื้อย และไม้ประดับอื่นๆ 
+        </p>
+
+        <div class="plant-types-grid">
+            
+            <a href="groundcover.html" class="plant-type-card">
+                <div class="card-icon">&#x2740;</div>
+                <h3>ไม้คลุมดิน</h3>
+                <p>พันธุ์ไม้ที่มีขนาดเล็ก จัดการง่าย มีประโยชน์ต่อบริเวณที่ผิวของดิน ต้นแตกแขนงคลอเลื้อยไปตามผิวหน้าดินหรือใกล้ผิวดิน โดยอาจจะมีส่วนปลาย หรือกิ่งอ่อนชูส่วนอวบขึ้นพื้นดินสูง</p>
+                <span class="read-more">อ่านต่อ</span>
+            </a>
+
+            <a href="herbaceous.html" class="plant-type-card">
+                <div class="card-icon">&#x2740;</div>
+                <h3>ไม้ล้มลุก</h3>
+                <p>พรรณไม้ที่มีอายุสั้น มีขนาดต้นเล็ก อายุสั้น ตายเมื่อออกดอกแล้ว ต่างกับไม้พุ่มและไม้ยืนต้น ส่วนที่อยู่เหนือดินมักจะตายไปเมื่อหมดฤดู แต่มีรากหรือหัวอยู่ใต้ดิน</p>
+                <span class="read-more">อ่านต่อ</span>
+            </a>
+
+            <a href="shrub.html" class="plant-type-card">
+                <div class="card-icon">&#x2740;</div>
+                <h3>ไม้พุ่ม</h3>
+                <p>พรรณไม้ที่มีขนาดกลางถึงขนาดใหญ่ มีอายุหลายปี อาจจะมีกิ่งแตกจากพื้นดิน ลำต้นมีขนาดสั้น ตั้งตรง ลักษณะของลำต้นที่ปลายจะบานออก ภาพด้านล่างคือภาพที่รวมในกลุ่มนี้</p>
+                <span class="read-more">อ่านต่อ</span>
+            </a>
+
+            <a href="tree.html" class="plant-type-card">
+                <div class="card-icon">&#x2740;</div>
+                <h3>ไม้ยืนต้น</h3>
+                <p>พรรณไม้ที่มีขนาดค่อนข้างใหญ่ มีอายุยาวหลายปี มีส่วนลำต้นแข็งแรง มีความมั่นคงแข็งแรง อาจจะมีเนื้อไม้ หรือไม่มี มีกิ่งก้านแตกที่ส่วนที่ยื่นส่วนปลายยอดมากกว่าบริเวณ...</p>
+                <span class="read-more">อ่านต่อ</span>
+            </a>
+
+            <a href="vine.html" class="plant-type-card">
+                <div class="card-icon">&#x2740;</div>
+                <h3>ไม้เลื้อย</h3>
+                <p>พรรณไม้ที่อ่อนนุ่ม มีกิ่งก้านหรือส่วนของลำต้นเลื้อยพัน กิ่งก้าน มีแขนงสำหรับยึดเกาะเพื่อปีนป่ายสิ่งอื่นๆ หรือเลื้อยไปตามพื้น มีกิ่งก้านหรือหนามใช้สำหรับยึดเกาะ...</p>
+                <span class="read-more">อ่านต่อ</span>
+            </a>
+
+            <a href="ornamental.html" class="plant-type-card">
+                <div class="card-icon">&#x2740;</div> 
+                <h3>ไม้ประดับอื่น ๆ</h3>
+                <p>พรรณไม้กลุ่มอื่นๆ ที่มีลักษณะพิเศษเฉพาะกลุ่มและไม่ตรงกับกลุ่มอื่น จัดได้แก่ เหง้า บานเย็น ต้นสน กล้วยไม้ บัว ไม้เลื้อย หรือกระถาง</p>
+                <span class="read-more">อ่านต่อ</span>
+            </a>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            พันธุ์ไม้ในรั้ววิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์
+        </div>
+    </footer>
+    
+    <script src="them.js"></script> 
+    <script src="search.js"></script> 
+</body>
+</html>

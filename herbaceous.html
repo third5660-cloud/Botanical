@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ไม้ล้มลุก | ข้อมูลพันธุ์ไม้</title>
+
+  <!-- เชื่อมกับไฟล์ CSS -->
+  <link rel="stylesheet" href="style1.css" />
+  <a href="type-search.html"></a> <!-- อยู่ใน shrub.html -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar-logo">
+            <img src="image/436206022_952929686628346_3125717830174581145_n (1).png" class="logo-image" alt="โลโก้พันธุ์ไม้">
+            <div class="navbar-text-container">
+                <a href="index.html">ข้อมูลพันธุ์ไม้</a>
+                <small>วิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์</small>
+            </div>
+        </div>
+        
+        <nav>
+            <ul class="navbar-menu">
+                <li>
+                    <button id="theme-toggle" class="theme-btn">
+                        <i class="fa-solid fa-moon"></i> โหมดมืด
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+  <style>
+    .hero {
+  position: relative;
+  height: 500px;
+  background: 
+            linear-gradient(rgba(0, 0, 0, 0.295), rgba(0, 0, 0, 0.305)),
+            url('image/pexels-maksgelatin-4597111.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin: 0;
+}
+
+.breadcrumb {
+  position: absolute;
+  bottom: 15px;
+  left: 30px;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>ไม้ล้มลุก</h1>
+    <div class="breadcrumb">
+      <a href="index.html">หน้าหลัก</a> / 
+      <a href="List.html">รายชื่อพันธุ์ไม้</a> </div> 
+</section>
+
+
+
+<!-- Main Content -->
+  <section class="content">
+    <div class="social">
+        <a href="javascript:void(0)" onclick="shareToFacebook()" class="facebook">
+            <i class="fa-brands fa-facebook"></i> Facebook
+        </a>
+        <a href="javascript:void(0)" onclick="shareToX()" class="x-social">
+            <i class="fa-brands fa-x-twitter"></i> X
+        </a>
+        <a href="javascript:void(0)" onclick="shareToLine()" class="line">
+            <i class="fa-brands fa-line"></i> Line
+        </a>
+    </div>
+
+    <p>
+        พรรณไม้ที่มีขนาดเล็กจนถึงขนาดค่อนข้างใหญ่ มีอายุปีเดียวถึงหลายปี ไม่มีเนื้อไม้ ไม่มีการแตกกิ่งก้านสาขา
+    </p>
+
+    <p>
+        ภาพด้านล่างคือพรรณไม้ในกลุ่มนี้ คลิกที่ชื่อชนิดพันธุ์ไม้เพื่อดูรายละเอียด
+    </p>
+</section>
+
+
+
+
+
+<div class="plant-grid">
+        
+        <div class="plant-card">
+            <div class="plant-img">
+                <img src="../flower/img/14352.jpg" alt="มะละกอ">
+            </div>
+            <div class="plant-info">
+                <h3>มะละกอ</h3>
+                <p>ผลไม้ ทำอาหาร มีประโยชน์สูง</p>
+                <a href="../flower/Papaya.html" class="view-btn">ดูรายละเอียด</a>
+            </div>
+        </div>
+
+        <div class="plant-card">
+            <div class="plant-img">
+                <img src="../flower/img/14351.jpg" alt="กล้วยไม้หวาย">
+            </div>
+            <div class="plant-info">
+                <h3>กล้วยไม้หวาย</h3>
+                <p>ประดับบ้านและสวน สวยงาม</p>
+                <a href="../flower/Dendrobium.html" class="view-btn">ดูรายละเอียด</a>
+            </div>
+        </div>
+        
+        <div class="plant-card">
+            <div class="plant-img">
+                <img src="../flower/img/eror.png" alt="รอเพิ่มข้อมูล">
+            </div>
+            <div class="plant-info">
+                <h3>รอเพิ่มข้อมูล</h3>
+                <p>รอเพิ่มข้อมูล</p>
+                <a href="#" class="view-btn">ดูรายละเอียด</a>
+            </div>
+        </div>
+
+</div> <footer>
+        <div class="footer-content">
+            พันธุ์ไม้ในรั้ววิทยาลัยเทคนิคท่าหลวงซิเมนต์ไทยอนุสรณ์
+        </div>
+</footer>
+
+  <script src="them.js"></script> 
+    <script src="search.js"></script> 
+    <script src="share.js"></script> 
+    <script src="navbar.js"></script> 
+</body>
+</html>

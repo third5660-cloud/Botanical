@@ -1,0 +1,152 @@
+/* บังคับให้ Navbar ไม่ห่อตัวลงมาบรรทัดใหม่ */
+.navbar-nav {
+    flex-direction: row !important; /* บังคับเรียงแนวนอน */
+    flex-wrap: nowrap;
+}
+
+/* ปรับลดขนาดเมื่อหน้าจอเริ่มเล็ก (เช่น Tablet หรือมือถือแนวนอน) */
+@media (max-width: 992px) {
+    .navbar-brand img {
+        width: 40px; /* ลดขนาดโลโก้ */
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem; /* ลดขนาดฟอนต์หัวข้อ */
+    }
+
+    .nav-link {
+        font-size: 0.9rem; /* ลดขนาดฟอนต์เมนู */
+        padding-left: 0.5rem !important; /* ลดช่องว่างระหว่างเมนู */
+        padding-right: 0.5rem !important;
+    }
+}
+
+/* ปรับลดขนาดเมื่อหน้าจอเล็กมาก (มือถือแนวตั้ง) */
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1rem;
+        margin-right: 5px;
+    }
+    
+    .nav-link {
+        font-size: 0.75rem; /* ตัวหนังสือเล็กหน่อยเพื่อให้ยัดลงไปได้ */
+        padding-left: 0.3rem !important;
+        padding-right: 0.3rem !important;
+    }
+}
+
+/* =========================================
+   ส่วนเสริมสำหรับย่อขนาดหน้าจอ (Responsive)
+   วางโค้ดนี้ไว้ล่างสุดของไฟล์ CSS
+   ========================================= */
+
+/* 1. สำหรับหน้าจอ Laptop หรือ Tablet (ขนาดเล็กกว่า 1200px) */
+@media screen and (max-width: 1200px) {
+    .navbar-text-container {
+        font-size: 28px; /* ลดจาก 38px */
+    }
+    .navbar nav {
+        margin-right: 20px; /* ลดขอบขวาจาก 50px */
+    }
+    .navbar-menu li {
+        margin-left: 20px; /* ลดช่องว่างเมนูจาก 30px */
+    }
+}
+
+/* 2. สำหรับหน้าจอ Tablet แนวตั้ง หรือ Laptop เล็ก (ขนาดเล็กกว่า 992px) */
+@media screen and (max-width: 992px) {
+    .navbar-text-container {
+        font-size: 22px; /* ลดลงอีก */
+    }
+    .navbar-logo .logo-image {
+        width: 45px; /* ลดขนาดโลโก้จาก 60px */
+    }
+    .navbar-menu a {
+        font-size: 14px; /* ลดขนาดตัวหนังสือเมนู */
+    }
+    .navbar-menu li {
+        margin-left: 15px; /* บีบช่องว่างให้แคบลงอีก */
+    }
+}
+
+/* 3. สำหรับหน้าจอมือถือ หรือจอเล็กมาก (ขนาดเล็กกว่า 768px) */
+/* หมายเหตุ: ถ้าย่อขนาดนี้ เมนูแนวนอนอาจจะเริ่มเบียดกันมาก */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 10px 5px; /* ลด padding รอบนอก */
+    }
+    
+    .navbar-text-container {
+        display: none; /* ⚠️ แนะนำ: ซ่อนชื่อเว็บยาวๆ เมื่อจอเล็ก เพื่อให้เหลือที่วางเมนู */
+        /* ถ้าไม่อยากซ่อน ให้แก้เป็น font-size: 16px; แทน */
+    }
+
+    .navbar-logo small {
+        display: none; /* ซ่อนคำอธิบายเล็กๆ */
+    }
+
+    .navbar-menu li {
+        margin-left: 10px;
+    }
+    
+    .navbar-menu a {
+        font-size: 12px;
+        padding: 5px 2px;
+    }
+    
+    /* บังคับไม่ให้เมนูหล่นบรรทัด */
+    .navbar-menu {
+        flex-wrap: nowrap; 
+    }
+}
+
+
+
+
+
+
+.menu-toggle {
+    display: none;  /* <--- สำคัญมาก! บรรทัดนี้สั่งว่า "ซ่อนไปก่อนนะถ้าไม่ใช่จอมือถือ" */
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    margin-right: 20px;
+}
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 10px 20px; }
+            .nav-links { display: none; } /* Hide menu for demo, usually needs JS toggle */
+            .menu-toggle { display: block; }
+            .container { grid-template-columns: 1fr; margin-top: -30px; }
+            .hero h1 { font-size: 2rem; }
+            .plant-image-container { height: 250px; }
+        }
+
+
+
+        .menu-toggle {
+    display: none; /* ซ่อนในหน้าจอคอม */
+    font-size: 1.8rem;
+    color: #1a7e1a; /* สีเขียวตามธีม */
+    cursor: pointer;
+    margin-left: auto; /* ดันปุ่มไปขวาสุด */
+    padding-right: 10px; /* เว้นระยะขอบขวานิดหน่อยไม่ให้ชิดจอเกินไป */
+}
+
+/* ตรวจสอบว่าใน Media Query (ส่วนจอมือถือ) เขียนแบบนี้หรือไม่ */
+@media screen and (max-width: 992px) {
+    .menu-toggle {
+        display: block; /* โชว์ปุ่มเมื่อจอเล็ก */
+    }
+}
+
+
+
+
+
+        /* สคริปทำเมนูใน .navbar */
+        /* const menuToggle = document.querySelector('.menu-toggle');
+    const navbarMenu = document.querySelector('.navbar-menu');
+
+    menuToggle.addEventListener('click', () => {
+        navbarMenu.classList.toggle('active'); */

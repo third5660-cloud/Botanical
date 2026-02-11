@@ -1,0 +1,379 @@
+/* =========================================
+   1. Theme Variables (กำหนดตัวแปรสี)
+   ========================================= */
+:root {
+    /* ☀️ สีโหมดสว่าง (Default) */
+    --bg-color: #f5f5f5;
+    --bg-navbar: #ffffff;
+    --bg-card: #ffffff;
+    --text-color: #333333;
+    --text-navbar-primary: #1a7e1a;
+    --text-navbar-secondary: #555555;
+    --primary-green: #1a7e1a;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --search-bg: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+    /* 🌙 สีโหมดมืด */
+    --bg-color: #121212;
+    --bg-navbar: #1e1e1e;
+    --bg-card: #252525;
+    --text-color: #e0e0e0;
+    --text-navbar-primary: #66bb6a; /* ปรับสีเขียวให้สว่างขึ้นให้อ่านง่ายในพื้นดำ */
+    --text-navbar-secondary: #bbbbbb;
+    --primary-green: #66bb6a;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --search-bg: #2c2c2c;
+    --border-color: #444444;
+}
+
+/* =========================================
+   2. Base Styles
+   ========================================= */
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: var(--bg-color); /* ใช้ตัวแปรสี */
+    color: var(--text-color);          /* ใช้ตัวแปรสี */
+    margin-top: 85px; /* ดันเนื้อหาหลบ Navbar */
+    padding: 0;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease; /* เอฟเฟกต์เปลี่ยนสีนุ่มๆ */
+}
+
+/* =========================================
+   3. Navbar & Button Design
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 20px; 
+    background-color: var(--bg-navbar); /* ใช้ตัวแปร */
+    box-shadow: 0 2px 4px var(--shadow-color);
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box; /* สำคัญ! ป้องกัน Navbar ล้นจอ */
+}
+
+.navbar.scrolled {
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar nav {
+    margin-left: auto; 
+}
+
+/* --- Logo Styling --- */
+.navbar-logo {
+    display: flex; 
+    align-items: center; 
+    text-decoration: none;
+}
+.navbar-logo .logo-image {
+    width: 60px; 
+    height: auto;
+    margin-right: 10px; 
+    transition: width 0.3s ease-in-out; 
+}
+.navbar.scrolled .navbar-logo .logo-image {
+    width: 50px; 
+}
+.navbar-text-container {
+    display: flex;
+    flex-direction: column; 
+    line-height: 1.1; 
+    transition: font-size 0.3s ease-in-out;
+}
+.navbar-text-container a {
+    color: var(--text-navbar-primary); /* ใช้ตัวแปร */
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.navbar-logo small {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-navbar-secondary); /* ใช้ตัวแปร */
+}
+
+
+/* ลบจุด (Bullet) และจัดระเบียบเมนู */
+.navbar nav ul {
+    list-style: none;  /* คำสั่งสำคัญ: ลบจุดด้านหน้าออก */
+    margin: 0;         /* ลบระยะขอบที่เกินมา */
+    padding: 0;        /* ลบระยะห่างภายใน */
+    display: flex;     /* จัดให้ปุ่มเรียงกันสวยงาม (ถ้ามีหลายปุ่ม) */
+    align-items: center;
+}
+
+.navbar nav li {
+    margin-left: 20px; /* เว้นระยะห่างระหว่างปุ่ม */
+}
+
+
+
+/* --- ✨ ตกแต่งปุ่มเปลี่ยนธีม (Theme Button) --- */
+.theme-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 8px 16px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px; /* ทำให้ปุ่มมนสวย */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* ระยะห่างไอคอนกับตัวหนังสือ */
+}
+
+.theme-btn:hover {
+    background-color: var(--primary-green);
+    color: #ffffff;
+    transform: translateY(-2px); /* ลอยขึ้นเล็กน้อยตอนชี้ */
+    box-shadow: 0 4px 8px rgba(26, 126, 26, 0.2);
+}
+
+/* ปรับสีปุ่มใน Dark Mode */
+[data-theme="dark"] .theme-btn {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+[data-theme="dark"] .theme-btn:hover {
+    background-color: var(--primary-green);
+    color: #121212; /* ตัวหนังสือสีเข้มเมื่อปุ่มสว่าง */
+}
+/* ==========================================================================
+   4. Hero Section
+   ========================================================================== */
+.hero {
+    position: relative;
+    height: 500px;
+    background: 
+        linear-gradient(var(--hero-overlay), var(--hero-overlay)),
+        url('image/pexels-pixabay-122429.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 0;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.breadcrumb {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    font-size: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 15px;
+    border-radius: 15px;
+}
+
+.breadcrumb a {
+    color: #fff;
+    font-weight: 400;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. Content Section & Social Buttons
+   ========================================================================== */
+.content {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.content p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+/* Social Buttons */
+.social {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none; /* 👈 เพิ่มบรรทัดนี้เพื่อลบเส้นใต้ลิงก์ */
+    transition: transform 0.2s, opacity 0.2s, background-color 0.3s;
+}
+
+.social a:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.social .facebook { background-color: #3b5998; }
+
+/* สไตล์ใหม่สำหรับปุ่ม X */
+.social .x-social { 
+    background-color: #000000; 
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.social .line { background-color: #00c300; }
+
+
+
+
+
+/* ==========================================================================
+   7. Plant Grid System (ส่วนแสดงผลพันธุ์ไม้)
+   ========================================================================== */
+.plant-grid {
+    display: grid;
+    /* จัดเรียงอัตโนมัติ ขั้นต่ำ 250px ถ้าจอใหญ่จะเพิ่มจำนวนคอลัมน์เอง */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 25px;
+    margin-top: 40px;
+}
+
+/* การ์ดพันธุ์ไม้ */
+.plant-card {
+    background-color: var(--bg-navbar); /* ใช้สีพื้นหลังเดียวกับ navbar */
+    border-radius: 15px;
+    overflow: hidden; /* ตัดส่วนเกินของภาพ */
+    box-shadow: 0 4px 10px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Effect เวลาเอาเมาส์ชี้ที่การ์ด */
+.plant-card:hover {
+    transform: translateY(-10px); /* ลอยขึ้น */
+    box-shadow: 0 12px 20px var(--shadow-color);
+}
+
+/* ส่วนรูปภาพ */
+.plant-img {
+    width: 100%;
+    height: 200px; /* กำหนดความสูงให้เท่ากันทุกรูป */
+    overflow: hidden;
+}
+
+.plant-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* บังคับรูปให้เต็มกรอบโดยไม่เสียสัดส่วน */
+    transition: transform 0.5s ease;
+}
+
+/* Effect ซูมรูปภาพ */
+.plant-card:hover .plant-img img {
+    transform: scale(1.1);
+}
+
+/* ส่วนข้อมูล */
+.plant-info {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1; /* ดันปุ่มให้ลงไปข้างล่างเสมอ */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plant-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+.plant-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* ปุ่มดูรายละเอียด */
+.view-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-green);
+    color: white !important;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s;
+    align-self: center; /* จัดกึ่งกลางแนวนอน */
+}
+
+.view-btn:hover {
+    background-color: #145c14;
+    transform: scale(1.05);
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 600px) {
+    .plant-grid {
+        grid-template-columns: 1fr; /* แสดงแถวละ 1 รูป */
+        gap: 20px;
+    }
+    
+    .plant-img {
+        height: 220px; /* เพิ่มความสูงรูปในมือถือให้ดูชัดขึ้น */
+    }
+}
+
+
+
+
+/* Footer */
+footer {
+    background-color: #222222; 
+    color: #cccccc; 
+    padding: 15px 0; 
+    text-align: center; 
+}
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .plant-types-grid { grid-template-columns: 1fr; }
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar nav { margin-left: 0; margin-top: 10px; }
+}

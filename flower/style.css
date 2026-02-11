@@ -1,0 +1,779 @@
+/* =========================================
+   1. Theme Variables (จากไฟล์ชุดที่ 1)
+   ========================================= */
+:root {
+    /* ☀️ สีโหมดสว่าง (Default) */
+    --bg-color: #f5f5f5;
+    --bg-navbar: #ffffff;
+    --bg-card: #ffffff;
+    --text-color: #333333;
+    --text-navbar-primary: #1a7e1a;
+    --text-navbar-secondary: #555555;
+    --primary-green: #1a7e1a;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --search-bg: #ffffff;
+    --border-color: #e0e0e0;
+    
+    /* ตัวแปรเสริมสำหรับหน้ารายละเอียด */
+    --accent-color: #ff9f43;
+    --text-light: #666666;
+    --info-bg: #f9f9f9;
+    --accordion-header-bg: #fdfdfd;
+}
+
+[data-theme="dark"] {
+    /* 🌙 สีโหมดมืด */
+    --bg-color: #121212;
+    --bg-navbar: #1e1e1e;
+    --bg-card: #252525; /* ใช้ร่วมกับ Sidebar/Card */
+    --text-color: #e0e0e0;
+    --text-navbar-primary: #66bb6a;
+    --text-navbar-secondary: #bbbbbb;
+    --primary-green: #66bb6a;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --search-bg: #2c2c2c;
+    --border-color: #444444;
+
+    /* ปรับตัวแปรเสริมสำหรับ Dark Mode */
+    --accent-color: #ffcc80;
+    --text-light: #b0b0b0;
+    --info-bg: #2c2c2c;
+    --accordion-header-bg: #2a2a2a;
+}
+
+/* =========================================
+   2. Base Styles (จากไฟล์ชุดที่ 1)
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: var(--bg-color); /* ใช้ตัวแปรสี */
+    color: var(--text-color);          /* ใช้ตัวแปรสี */
+    margin-top: 85px; /* ดันเนื้อหาหลบ Navbar */
+    padding: 0;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* =========================================
+   3. Navbar & Button Design (จากไฟล์ชุดที่ 1)
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 20px; 
+    background-color: var(--bg-navbar); /* ใช้ตัวแปร */
+    box-shadow: 0 2px 4px var(--shadow-color);
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.navbar.scrolled {
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar nav {
+    margin-left: auto; 
+}
+
+/* --- Logo Styling --- */
+.navbar-logo {
+    display: flex; 
+    align-items: center; 
+    text-decoration: none;
+}
+.navbar-logo .logo-image {
+    width: 60px; 
+    height: auto;
+    margin-right: 10px; 
+    transition: width 0.3s ease-in-out; 
+}
+.navbar.scrolled .navbar-logo .logo-image {
+    width: 50px; 
+}
+.navbar-text-container {
+    display: flex;
+    flex-direction: column; 
+    line-height: 1.1; 
+    transition: font-size 0.3s ease-in-out;
+}
+.navbar-text-container a {
+    color: var(--text-navbar-primary); /* ใช้ตัวแปร */
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.navbar-logo small {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-navbar-secondary); /* ใช้ตัวแปร */
+}
+
+/* --- Menu & Buttons --- */
+.navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar nav li {
+    margin-left: 20px;
+}
+
+/* ลิงก์เมนู (เพิ่มจากไฟล์เก่าเพื่อให้คลิกได้) */
+.navbar-menu a {
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+.navbar-menu a:hover {
+    color: var(--primary-green);
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* ปุ่มเปลี่ยนธีม */
+.theme-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 8px 16px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-btn:hover {
+    background-color: var(--primary-green);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(26, 126, 26, 0.2);
+}
+
+[data-theme="dark"] .theme-btn {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+[data-theme="dark"] .theme-btn:hover {
+    background-color: var(--primary-green);
+    color: #121212;
+}
+
+/* Hamburger Toggle (Responsive) */
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--primary-green);
+    cursor: pointer;
+    margin-left: auto;
+    padding-right: 5px;
+}
+
+/* Dropdown Menu */
+.dropdown-item { position: relative; }
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background-color: var(--bg-card); /* ใช้ตัวแปร */
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1010;
+    border: 1px solid var(--border-color);
+}
+.dropdown-menu li { margin: 0; display: block; }
+.dropdown-menu li a { padding: 10px 20px; font-weight: 400; color: var(--text-color); }
+.dropdown-item:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   4. Content Sections (ส่วนเนื้อหาของหน้ารายละเอียด)
+   ========================================= */
+
+/* Hero Section (ปรับปรุงให้รองรับ Navbar ใหม่) */
+.hero {
+    position: relative;
+    height: 350px;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('/img/pexels-picjumbo-com-55570-196664.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 70px; /* เว้นระยะเพิ่ม */
+}
+.hero h1 { font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 10px; }
+.breadcrumb { font-size: 1rem; opacity: 0.9; }
+
+/* Layout Container */
+.container {
+    max-width: 1200px;
+    margin: -50px auto 50px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Card Styling */
+.card {
+    background: var(--bg-card); /* ใช้ตัวแปร */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    padding: 30px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.plant-image-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+.plant-image-container img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+}
+.plant-image-container:hover img { transform: scale(1.05); }
+
+/* Plant Header */
+.plant-header {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color); /* ใช้ตัวแปร */
+    padding-bottom: 15px;
+}
+.status-badge {
+    background: var(--primary-green); color: white;
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 0.85rem; display: inline-block; margin-bottom: 10px;
+}
+.plant-header h2 { color: var(--primary-green); font-size: 1.8rem; margin-bottom: 5px; }
+.plant-meta { color: var(--text-light); font-size: 0.9rem; display: flex; gap: 15px; flex-wrap: wrap; }
+.plant-meta i { color: var(--accent-color); margin-right: 5px; }
+
+/* Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    background: var(--info-bg); /* ใช้ตัวแปร */
+    padding: 20px;
+    border-radius: 8px;
+}
+.info-item strong { color: var(--primary-green); display: block; }
+
+/* Details */
+.detail-section h3 {
+    font-size: 1.4rem;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-green);
+    color: var(--text-color);
+}
+.detail-section p { color: var(--text-light); }
+
+/* Accordion */
+details.accordion-item {
+    background: var(--bg-card); /* ใช้ตัวแปร */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+summary.accordion-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--accordion-header-bg); /* ใช้ตัวแปร */
+    list-style: none;
+}
+summary.accordion-header:hover { opacity: 0.9; }
+summary.accordion-header::-webkit-details-marker { display: none; }
+.accordion-content {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-light);
+}
+details[open] summary .fa-chevron-down { transform: rotate(180deg); transition: 0.3s; }
+
+/* Sidebar */
+.sidebar { display: flex; flex-direction: column; gap: 20px; }
+.sidebar-widget {
+    background: var(--bg-card); /* ใช้ตัวแปร */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+.widget-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* QR & Search */
+.qr-widget { text-align: center; border: 2px solid var(--primary-green); }
+.qr-box {
+    border: 2px dashed #ccc;
+    background: #fff; /* QR ต้องพื้นขาวเสมอเพื่อให้สแกนได้ */
+    padding: 20px; border-radius: 8px; margin-bottom: 15px;
+}
+
+.search-box { display: flex; margin-bottom: 10px; }
+.search-box input {
+    flex: 1; padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px 0 0 6px;
+    font-family: 'Kanit';
+    background-color: var(--search-bg); /* ใช้ตัวแปร */
+    color: var(--text-color);
+}
+.search-box button {
+    padding: 10px 15px;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+.category-list li { margin-bottom: 10px; }
+.category-list a {
+    display: block;
+    padding: 10px;
+    background: var(--info-bg); /* ใช้ตัวแปร */
+    border-radius: 6px;
+    color: var(--text-color);
+}
+.category-list a:hover { background: var(--primary-green); color: white; }
+
+/* Social Share
+.social-share { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+.social-btn { 
+    flex: 1; padding: 12px; text-align: center; color: white; 
+    border-radius: 50px; font-size: 1rem; font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; min-width: 120px;
+}
+.social-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); color: white; }
+.bg-fb { background: linear-gradient(to right, #3b5998, #476bb8); }
+.bg-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.bg-ln { background: linear-gradient(to right, #00c300, #00e000); } */
+
+/* Footer */
+
+
+/* --- แก้ไขเฉพาะส่วน Social Buttons --- */
+
+.social-share { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 30px; 
+    flex-wrap: wrap; 
+}
+
+.social-btn {  
+    flex: 1; 
+    padding: 12px; 
+    text-align: center; 
+    color: white;  
+    border-radius: 50px; 
+    font-size: 1rem; 
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    gap: 8px; 
+    min-width: 120px;
+}
+
+.social-btn:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+    color: white; 
+}
+
+/* สี Facebook */
+.bg-fb { background: linear-gradient(to right, #3b5998, #476bb8); }
+
+/* สีใหม่: แอป X (Twitter) - ใช้สีดำ Jet Black */
+.bg-x { 
+    background: #000000; 
+    border: 1px solid rgba(255,255,255,0.1); /* เพิ่มขอบเล็กน้อยให้ดูพรีเมียม */
+}
+.bg-x:hover {
+    background: #222222; /* สว่างขึ้นเล็กน้อยเวลาเอาเมาส์วาง */
+}
+
+/* สี Line */
+.bg-ln { background: linear-gradient(to right, #00c300, #00e000); }
+
+
+
+
+
+
+footer {
+    background: #2d3436;
+    color: #b2bec3;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+/* =========================================
+   Responsive (รวม Navbar + Content)
+   ========================================= */
+
+/* 1. Laptop/Tablet (จอเริ่มเล็ก) */
+@media screen and (max-width: 1200px) {
+    .navbar-text-container a { font-size: 22px; }
+}
+
+/* 2. Tablet แนวตั้ง / มือถือ (จุดเปลี่ยนสำคัญ) */
+@media screen and (max-width: 1024px) {
+    /* Navbar Adjustment */
+    .navbar { padding: 10px 15px; }
+    .navbar-logo .logo-image { width: 45px; }
+    .navbar-text-container { 
+        display: flex !important; flex-direction: column; max-width: 60%;
+    }
+    .navbar-text-container a { font-size: 16px; white-space: nowrap; }
+    .navbar-text-container small { 
+        display: block !important; font-size: 10px; color: #666; 
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    
+    .menu-toggle { display: block; } /* โชว์ปุ่มเมนู */
+
+    .navbar-menu {
+        display: none; /* ซ่อนเมนูไว้ก่อน */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background-color: var(--bg-card);
+        box-shadow: 0 10px 15px var(--shadow-color);
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+    .navbar-menu.active { display: flex; }
+    .navbar-menu li { margin: 10px 0; margin-left: 0; width: 100%; }
+    
+    .dropdown-menu {
+        position: static; box-shadow: none; padding-left: 20px;
+        background-color: transparent; display: none;
+    }
+    .dropdown-item:hover .dropdown-menu { display: block; }
+
+    /* Content Layout */
+    .container {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+    .sidebar { order: 2; }
+}
+
+/* 3. มือถือเล็ก (กว้างไม่เกิน 480px) */
+@media screen and (max-width: 480px) {
+    .social-share { gap: 10px; }
+    .social-btn { font-size: 0.8rem; padding: 10px; }
+}
+
+
+
+/* =========================================
+   ส่วนนี้สำหรับ Breadcrumb Links
+   ========================================= */
+
+/* กำหนดค่าเริ่มต้นให้ลิงก์ใน breadcrumb */
+.breadcrumb a {
+    text-decoration: none; /* ปกติไม่มีเส้น */
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* กำหนดค่าเมื่อเอาเมาส์ไปวาง (Hover) */
+.breadcrumb a:hover {
+    text-decoration: underline;      /* สั่งให้ขีดเส้นใต้ */
+    text-underline-offset: 4px;      /* เว้นระยะห่างเส้นใต้กับตัวหนังสือเล็กน้อยให้ดูสวยงาม */
+    text-decoration-thickness: 2px;  /* (ตัวเลือกเสริม) ปรับความหนาของเส้น */
+    
+    /* เลือกสีของเส้นและตัวอักษรตอนโฮเวอร์ */
+    color: var(--accent-color);      /* เปลี่ยนเป็นสีส้ม/เหลืองอ่อน (ตามธีม) ให้เด่นขึ้น */
+    /* หรือถ้าอยากได้สีขาวเหมือนเดิมให้ใช้: color: #ffffff; */
+}
+
+
+
+
+
+
+
+/* =========================================
+   5. Search Box Styling (ส่วนค้นหาใน Sidebar)
+   ========================================= */
+
+/* จัดตำแหน่งให้รองรับ Popup ผลลัพธ์ */
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+/* กล่อง Input ค้นหา */
+.custom-search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 2px solid var(--border-color); /* เส้นขอบตามธีม */
+    border-radius: 8px;
+    background-color: var(--search-bg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* เมื่อคลิกที่ช่องค้นหา ให้เปลี่ยนสีเส้นขอบ */
+.custom-search-bar:focus-within {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 5px rgba(26, 126, 26, 0.2);
+}
+
+/* ตัวช่องกรอกข้อความ */
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    background: transparent;
+    color: var(--text-color);
+}
+
+/* ปุ่มแว่นขยาย */
+.search-btn {
+    background: transparent;
+    border: none;
+    padding: 0 15px;
+    color: var(--primary-green);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.search-btn:hover {
+    transform: scale(1.1);
+}
+
+/* --- กล่องแสดงผลลัพธ์ (Dropdown) --- */
+.search-results-box {
+    /* 1. เปลี่ยนจาก absolute เป็น relative หรือ static */
+    position: relative; 
+    
+    /* 2. ลบคำสั่งจัดตำแหน่งแบบลอยตัวออก (หรือใส่ comment ไว้) */
+    /* top: 100%; */
+    /* left: 0; */
+    
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* ปรับความมนตามใจชอบ */
+    
+    /* เพิ่มระยะห่างด้านบนและล่างนิดหน่อย */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none; 
+}
+
+/* รายการผลลัพธ์แต่ละบรรทัด */
+.search-item {
+    display: block;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item:hover {
+    background-color: var(--info-bg); /* เปลี่ยนสีเมื่อเมาส์ชี้ */
+    color: var(--primary-green);
+    padding-left: 20px; /* ขยับขวานิดนึงตอนชี้ */
+}
+
+.search-item h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.search-item span {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* --- Tag แนะนำด้านล่าง --- */
+.search-tags a {
+    display: inline-block;
+    color: var(--primary-green);
+    background-color: rgba(26, 126, 26, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.search-tags a:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+
+
+
+/* =========================================
+   6. Hero Search Styling (แบบในรูปตัวอย่าง)
+   ========================================= */
+
+.search-hero-section {
+    background-color: var(--bg-card); /* หรือจะใช้สีขาว #ffffff */
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    /* ถ้าต้องการให้เต็มจอกว้างๆ แบบในรูป ให้เอา border-radius กับ box-shadow ออก แล้วปรับ margin/padding */
+}
+
+/* หัวข้อ "ค้นหาพันธุ์ไม้" */
+.search-hero-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-green); /* สีเขียว */
+    margin-bottom: 20px;
+}
+
+/* กล่อง Search Bar ใหญ่ */
+.hero-search-bar {
+    display: flex;
+    max-width: 700px; /* จำกัดความกว้างไม่ให้ยาวเกินไป */
+    margin: 0 auto;   /* จัดกึ่งกลาง */
+    border: 2px solid #146114; /* ขอบสีเทาอ่อนแบบในรูป */
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.hero-search-bar:focus-within {
+    border-color: var(--primary-green); /* เปลี่ยนเป็นสีเขียวเมื่อพิมพ์ */
+    box-shadow: 0 0 8px rgba(26, 126, 26, 0.2);
+}
+
+/* ช่อง Input */
+.hero-search-input {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    font-family: 'Kanit', sans-serif;
+    color: #333;
+}
+
+/* ปุ่มแว่นขยาย (สี่เหลี่ยมสีเขียวด้านขวา) */
+.hero-search-btn {
+    background-color: var(--primary-green); /* สีเขียว */
+    color: white;
+    border: none;
+    padding: 0 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero-search-btn:hover {
+    background-color: #146114; /* เขียวเข้มขึ้นตอนชี้ */
+}
+
+/* Tags ด้านล่าง */
+.hero-search-tags {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.hero-search-tags a {
+    color: #e67e22; /* สีส้มแบบในรูป */
+    font-weight: 600;
+    margin: 0 3px;
+    text-decoration: none;
+}
+
+.hero-search-tags a:hover {
+    text-decoration: underline;
+    color: #d35400;
+}
+
+/* ปรับตำแหน่งกล่องผลลัพธ์ให้ตรงกับ Search bar ใหม่ */
+#mainSearchResults {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; /* หรือ absolute แล้วแต่บริบท */
+    z-index: 1001;
+    text-align: left; /* ผลลัพธ์ชิดซ้าย */
+}
