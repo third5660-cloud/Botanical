@@ -6,139 +6,139 @@ const plantDatabase = [
         name: "ชวนชม", 
         category: "ไม้พุ่ม", 
         keywords: "ทนแล้ง ดอกสีชมพู ดอกสีแดง เลี้ยงง่าย แดดจัด", 
-        url: "../flower/Adenium.html" 
+        url: "flower/Adenium.html" 
     },
     { 
         name: "ต้นหมาก", 
         category: "ไม้ยืนต้น", 
         keywords: "ปาล์ม สูง ให้ร่มเงา แดดจัด", 
-        url: "../flower/Areca plam.html" 
+        url: "flower/Areca plam.html" 
     },
     { 
         name: "ต้นกระดังงา", 
         category: "ไม้ยืนต้น", 
         keywords: "ดอกหอม ดอกสีเหลือง ไม้มงคล ไทยแท้", 
-        url: "../flower/Cananga Thee.html" 
+        url: "flower/Cananga Thee.html" 
     },
     { 
         name: "ชาฮกเกี้ยน", 
         category: "ไม้พุ่ม", 
         keywords: "ทำรั้ว ดัดทรงได้ ดอกสีขาว ผลสีส้ม แดดจัด", 
-        url: "../flower/Carmona.html" 
+        url: "flower/Carmona.html" 
     },
     { 
         name: "โกสน", 
         category: "ไม้พุ่ม", 
         keywords: "ใบสีสวย ใบหลากสี ไม้มงคล ทนแดด", 
-        url: "../flower/Croton.html" 
+        url: "flower/Croton.html" 
     },
     { 
         name: "กุหลาบหนู", 
         category: "ไม้พุ่ม", 
         keywords: "ดอกสวย ดอกกุหลาบ ดอกหลากสี หนาม", 
-        url: "../flower/Fairy Rose.html" 
+        url: "flower/Fairy Rose.html" 
     },
     { 
         name: "โกสนใบขนุน", 
         category: "ไม้พุ่ม", 
         keywords: "ใบสีเหลือง ใบเขียว ใบหนา ไม้มงคล", 
-        url: "../flower/Garden Croton.html" 
+        url: "flower/Garden Croton.html" 
     },
     { 
         name: "หนวดปลาหมึกแคระด่าง", 
         category: "ไม้พุ่ม", 
         keywords: "ใบด่าง ฟอกอากาศ ปลูกในร่มได้", 
-        url: "../flower/Hawaiian.html" 
+        url: "flower/Hawaiian.html" 
     },
     { 
         name: "ดอกเข็ม", 
         category: "ไม้พุ่ม", 
         keywords: "ดอกสีแดง ดอกสีเหลือง ทำรั้ว น้ำหวาน ไหว้ครู", 
-        url: "../flower/Ixora.html" 
+        url: "flower/Ixora.html" 
     },
     { 
         name: "ราชพฤกษ์", 
         category: "ไม้ยืนต้น", 
         keywords: "แก้ท้องผูก ดอกสีเหลือง ไม้มงคล ไทยแท้", 
-        url: "../flower/Golden Shower.html" 
+        url: "flower/Golden Shower.html" 
     },
     { 
         name: "สังกาลังกา", 
         category: "ไม้ยืนต้น", 
         keywords: "Cannonball ดอกสีเหลือง ไม้มงคล ไทยแท้ ประดับสวน", 
-        url: "../flower/Cannonball.html" 
+        url: "flower/Cannonball.html" 
     },
     { 
         name: "หูปลาช่อน", 
         category: "ไม้พุ่ม", 
         keywords: "ใบเขียว ดอกสีเหลือง ประดับสวน", 
-        url: "../flower/Copperleaf.html" 
+        url: "flower/Copperleaf.html" 
     },
     { 
         name: "โกสนช้างเข้าโบสถ์", 
         category: "ไม้พุ่ม", 
         keywords: "ใบสีสวย ใบหลากสี ไม้มงคล ทนแดด", 
-        url: "../flower/Spiral Croton.html" 
+        url: "flower/Spiral Croton.html" 
     },
     { 
         name: "กล้วยไม้หวาย", 
         category: "ไม้ล้มลุก", 
         keywords: "ดอกสีสวย ไม้มงคล ดอกไม้บูชา", 
-        url: "../flower/Dendrobium.html" 
+        url: "flower/Dendrobium.html" 
     },
     { 
         name: "มะละกอ", 
         category: "ไม้ล้มลุก", 
         keywords: "ผลสุก ไม้มงคล ดอกไม้บูชา", 
-        url: "../flower/Papaya.html" 
+        url: "flower/Papaya.html" 
     },
     { 
         name: "เทียนทอง", 
         category: "ไม้พุ่ม", 
         keywords: "ใบเขียว ดอกสีเหลือง ประดับสวน ตกแต่งสวน", 
-        url: "../flower/Sky Flower.html" 
+        url: "flower/Sky Flower.html" 
     },
     { 
         name: "กะเพราแดง", 
         category: "ไม้พุ่ม", 
         keywords: "ใบเขียว หอม กินได้ ตกแต่งสวน", 
-        url: "../flower/Red Holy Basil.html" 
+        url: "flower/Red Holy Basil.html" 
     },
     { 
         name: "กุหลาบขาว", 
         category: "ไม้พุ่ม", 
         keywords: "ดอกสวย ดอกกุหลาบ ดอกหลากสี หนาม", 
-        url: "../flower/Write Rose.html" 
+        url: "flower/Write Rose.html" 
     },
     { 
         name: "ต้นไทรทอง", 
         category: "ไม้ยืนต้น", 
         keywords: "ใบเขียว ไม้มงคล ไทยแท้ ประดับสวน", 
-        url: "../flower/Lofty Fig.html" 
+        url: "flower/Lofty Fig.html" 
     },
     { 
         name: "โกสนสายรุ้ง", 
         category: "ไม้พุ่ม", 
         keywords: "ใบสีสวย ใบหลากสี ไม้มงคล ทนแดด", 
-        url: "../flower/Rainbow Croton.html" 
+        url: "flower/Rainbow Croton.html" 
     },
     { 
         name: "มอนสเตรา", 
         category: "ไม้เลื้อย", 
         keywords: "ใบสีสวย ใบใหญ่ ทนแดด ประดับสวน ประดับบ้าน", 
-        url: "../flower/Monstera.html" 
+        url: "flower/Monstera.html" 
     },
     { 
         name: "เล็บครุฑฝอยทอง", 
         category: "ไม้พุ่ม", 
         keywords: "ใบสีสวย ใบใหญ่ ทนแดด ประดับสวน ประดับบ้าน", 
-        url: "../flower/Polyscias.html" 
+        url: "flower/Polyscias.html" 
     },
     { 
         name: "สาละลังกา", 
         category: "ไม้ยืนต้น", 
         keywords: "ดอกหอม ออกดอกตามลำต้น ผลกลมใหญ่ ไม้มงคลในวัด", 
-        url: "../flower/Cannonball.html" 
+        url: "flower/Cannonball.html" 
     }
 ];
 /* ==========================================================================
