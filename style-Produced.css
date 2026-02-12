@@ -1,0 +1,84 @@
+/* --- สไตล์หน้าผู้จัดทำ (เพิ่มเติม) --- */
+
+/* จัด Layout นักศึกษา 2 คน */
+.contributor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* แบ่ง 2 คอลัมน์ */
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* จัด Layout อาจารย์ 3 คน */
+.advisor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* แบ่ง 3 คอลัมน์ */
+    gap: 20px;
+}
+
+/* กล่องโปรไฟล์ */
+.profile-card {
+    background-color: var(--bg-color); /* พื้นสีเทาอ่อนตามธีม */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-color);
+    border-color: var(--primary-green);
+}
+
+/* กล่องใส่รูปภาพ */
+.image-box {
+    width: 150px;
+    height: 180px;
+    background-color: #ddd;
+    margin: 0 auto 15px;
+    border-radius: 8px;
+    overflow: hidden; /* ตัดรูปที่เกินขอบ */
+    border: 2px solid var(--border-color);
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* จัดรูปให้เต็มกล่อง */
+}
+
+/* ข้อมูลในโปรไฟล์ */
+.profile-info h4 {
+    margin: 10px 0 5px;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.profile-info p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: var(--text-navbar-secondary);
+}
+
+.profile-info .role {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* ปรับขนาดกล่องอาจารย์ให้เล็กลงหน่อย (Optional) */
+.profile-card.small .image-box {
+    width: 120px;
+    height: 140px;
+}
+
+/* การแสดงผลบนมือถือ */
+@media (max-width: 768px) {
+    .contributor-grid, .advisor-grid {
+        grid-template-columns: 1fr; /* บนมือถือให้เรียงคนละบรรทัด */
+    }
+    
+    .profile-card {
+        margin: 0 10px;
+    }
+}
